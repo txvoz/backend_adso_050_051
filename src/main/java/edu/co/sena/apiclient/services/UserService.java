@@ -27,7 +27,6 @@ public class UserService {
 
         //yo debo hacer las validaciones de negocio
 
-
         this.repository.save(entity);
     }
 
@@ -51,6 +50,40 @@ public class UserService {
         }
 
         return dtos;
+    }
+
+    public UserDto getById(Long id){
+        UserEntity entity = this.repository.findById(id).get();
+
+        UserDto dto = new UserDto();
+
+        dto.setFullName(entity.getFullName());
+        dto.setColor(entity.getColor());
+        dto.setEmail(entity.getEmail());
+        dto.setEmail(entity.getEmail());
+        dto.setPhone(entity.getPhone());
+        dto.setId(entity.getId());
+        dto.setBornDate(entity.getBornDate());
+
+        return dto;
+    }
+
+
+    public void update(UserDto dto, Long id){
+        UserEntity entity = this.repository.findById(id).get();
+
+        entity.setFullName(dto.getFullName());
+        entity.setColor(dto.getColor());
+        entity.setBornDate(dto.getBornDate());
+        entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
+
+        this.repository.save(entity);
+    }
+
+    public void delete(Long id){
+        UserEntity entity = this.repository.findById(id).get();
+        this.repository.deleteById(id);
     }
 
 
