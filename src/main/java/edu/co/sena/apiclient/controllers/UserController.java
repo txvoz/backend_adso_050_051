@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -28,7 +28,10 @@ public class UserController {
     }
 
     @GetMapping(path = "/{id}")
-    public UserDto getById(@PathVariable("id") Long id){
+    public UserDto getById(
+            @PathVariable("id") Long id
+            ){
+
         return this.service.getById(id);
     }
 

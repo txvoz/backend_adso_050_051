@@ -20,17 +20,17 @@ public class UserService {
         UserEntity entity = new UserEntity();
 
         entity.setFullName(dto.getFullName());
-        entity.setColor(dto.getColor());
-        entity.setBornDate(dto.getBornDate());
-        entity.setEmail(dto.getEmail());
-        entity.setPhone(dto.getPhone());
+        entity.setColor(dto.getColor()); // Hexadecimal #ff00011
+        entity.setBornDate(dto.getBornDate()); // Sea mayor de edd
+        entity.setEmail(dto.getEmail()); // formato email
+        entity.setPhone(dto.getPhone()); // formato telefono valido para colombia
 
         //yo debo hacer las validaciones de negocio
-
         this.repository.save(entity);
     }
 
     public List<UserDto> getAllUsers(){
+
         List<UserEntity> usuarios = this.repository.findAll();
         ArrayList<UserDto> dtos = new ArrayList<>();
 
@@ -67,7 +67,6 @@ public class UserService {
 
         return dto;
     }
-
 
     public void update(UserDto dto, Long id){
         UserEntity entity = this.repository.findById(id).get();
